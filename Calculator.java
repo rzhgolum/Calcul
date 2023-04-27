@@ -1,6 +1,3 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.*;
 
 public class Calculator {
@@ -9,8 +6,7 @@ public class Calculator {
     static char operation;
     static int result;
 
-    public static void main (String[] args) {
-        String userInput = scanner.nextLine().replace(" ", "");
+    public static String calc(String userInput){
         char[] under_char = new char[10];
         for (int i = 0; i < userInput.length(); i++) {
             under_char[i] = userInput.charAt(i);
@@ -37,16 +33,18 @@ public class Calculator {
         String string03 = stable01.trim();
         number1 = romanToNumber(stable00);
         number2 = romanToNumber(string03);
-        if (number1 < 0 && number2 < 0) {
-            result = 0;
-        } else {
             result = calculated(number1, number2, operation);
             String resultRoman = convertNumToRoman(result);
             System.out.println(resultRoman);
-        }
         number1 = Integer.parseInt(stable00);
         number2 = Integer.parseInt(string03);
         result = calculated(number1, number2, operation);
+
+        return String.valueOf(result);
+    }
+    public static void main (String[] args) {
+        String userInput = scanner.nextLine().replace(" ", "");
+        calc(userInput);
         System.out.println(result);
     }
 
