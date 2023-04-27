@@ -6,42 +6,7 @@ public class Calculator {
     static char operation;
     static int result;
 
-    public static String calc(String userInput){
-        char[] under_char = new char[10];
-        for (int i = 0; i < userInput.length(); i++) {
-            under_char[i] = userInput.charAt(i);
-            if (under_char[i] == '+') {
-                operation = '+';
-            }
-            if (under_char[i] == '-') {
-                operation = '-';
-            }
-            if (under_char[i] == '*') {
-                operation = '*';
-            }
-            if (under_char[i] == '/') {
-                operation = '/';
-            }
-        }
-        String under_charString = String.valueOf(under_char);
-        String[] blacks = under_charString.split("[+-/*]");
-        if (blacks.length > 2){
-            throw new RuntimeException();
-        }
-        String stable00 = blacks[0];
-        String stable01 = blacks[1];
-        String string03 = stable01.trim();
-        number1 = romanToNumber(stable00);
-        number2 = romanToNumber(string03);
-            result = calculated(number1, number2, operation);
-            String resultRoman = convertNumToRoman(result);
-            System.out.println(resultRoman);
-        number1 = Integer.parseInt(stable00);
-        number2 = Integer.parseInt(string03);
-        result = calculated(number1, number2, operation);
-
-        return String.valueOf(result);
-    }
+   
     public static void main (String[] args) {
         String userInput = scanner.nextLine().replace(" ", "");
         calc(userInput);
@@ -120,5 +85,42 @@ public class Calculator {
                 throw new IllegalArgumentException("Не верный знак операции");
         }
         return result;
+    }
+    
+     public static String calc(String userInput){
+        char[] under_char = new char[10];
+        for (int i = 0; i < userInput.length(); i++) {
+            under_char[i] = userInput.charAt(i);
+            if (under_char[i] == '+') {
+                operation = '+';
+            }
+            if (under_char[i] == '-') {
+                operation = '-';
+            }
+            if (under_char[i] == '*') {
+                operation = '*';
+            }
+            if (under_char[i] == '/') {
+                operation = '/';
+            }
+        }
+        String under_charString = String.valueOf(under_char);
+        String[] blacks = under_charString.split("[+-/*]");
+        if (blacks.length > 2){
+            throw new RuntimeException();
+        }
+        String stable00 = blacks[0];
+        String stable01 = blacks[1];
+        String string03 = stable01.trim();
+        number1 = romanToNumber(stable00);
+        number2 = romanToNumber(string03);
+            result = calculated(number1, number2, operation);
+            String resultRoman = convertNumToRoman(result);
+            System.out.println(resultRoman);
+        number1 = Integer.parseInt(stable00);
+        number2 = Integer.parseInt(string03);
+        result = calculated(number1, number2, operation);
+
+        return String.valueOf(result);
     }
 }
